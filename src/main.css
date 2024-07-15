@@ -1,1247 +1,1052 @@
 /** @format */
 /** @format */
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-/** @format */
+/* Variables */
 :root {
-  --accent1-light: hsl(285, 46%, 56%);
-  --accent1-dark: hsl(285, 35%, 21%);
-  --accent1-light-opacity1: hsla(285, 46%, 56%, 0.4);
-  --accent2-light: hsl(195, 100%, 43%);
-  --accent2-dark: hsl(195, 100%, 16%);
+    --primary-accent-color: #00a4dc;
+    --secondary-accent-color: #00a4dc20;
+    --primary-background-color: #101010;
+    --secondary-background-color: #181818;
+    --primary-background-transparent: rgba(35,35,35,0.5);
+    --secondary-background-transparent: rgba(0,0,0,0.6);
+    --rounded-cards: 15px;
+    --blur: 10px;
 }
 
-.backgroundContainer {
-  background-color: hsl(208, 89%, 5%);
+/* Setting accent color variable */
+.emby-checkbox:checked + span + .checkboxOutline,
+.selectionCommandsPanel,
+.countIndicator,
+.MuiButton-root.MuiButton-containedSizeMedium,
+.MuiChip-root.MuiChip-colorInfo:not(.MuiChip-root.MuiChip-colorError) {
+    background: var(--primary-accent-color) !important;
 }
-.backgroundContainer.withBackdrop {
-  background: transparent !important;
+.MuiAlert-root.MuiAlert-standardInfo {
+    background: var(--secondary-accent-color) !important;
+}
+.emby-checkbox:checked + span + .checkboxOutline,
+.emby-checkbox:focus:not(:checked) + span + .checkboxOutline,
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select-withcolor:focus,
+.mdl-spinner__layer-1,
+.mdl-spinner__layer-2,
+.mdl-spinner__layer-3,
+.mdl-spinner__layer-4,
+.progressring-spiner {
+    border-color: var(--primary-accent-color) !important;
+}
+.button-link:not(.itemDetailPage .button-link),
+.selectLabelFocused,
+.textareaLabelFocused,
+.inputLabelFocused,
+.emby-tab-button:hover,
+.metadataSidebarIcon,
+.upNextDialog-countdownText,
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit {
+    color: var(--primary-accent-color) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+    .paper-icon-button-light:hover:not(:disabled) {
+        color: var(--primary-accent-color) !important;
+        background-color: var(--secondary-accent-color) !important;
+    }
 }
 
-.backdropContainer {
-  filter: opacity(25%) brightness(50%) saturate(110%) contrast(110%);
-  margin-left: -25px;
-  margin-top: -25px;
-  width: calc(100vw + 50px);
-  height: calc(100vh + 50px);
+/* Increase size of Jellyfin logo */
+.layout-desktop .pageTitleWithLogo {
+    margin-left: 25px !important;
+    height: 40px !important;
 }
 
-.withTabs .content-primary {
-  padding-top: 1em !important;
+/* Static left drawer */
+.layout-desktop .mainDrawer {
+    left: 0 !important;
+    top: 0 !important;
+    width: 250px !important;
+    /* Modified background color */
+    background: var(--secondary-background-color) !important;
+    /* Move drawer behind header */
+    z-index: 998 !important;
+}
+/* Lower drawer buttons */
+.layout-desktop .mainDrawer-scrollContainer {
+    margin-top: 95px !important;
+    margin-left: 10px !important;
+}
+.layout-mobile .mainDrawer-scrollContainer {
+    margin-top: 15px !important;
+}
+/* Shift content to the right */
+.layout-desktop .libraryPage:not(#editItemMetadataPage) {
+    margin-left: 250px !important;
+}
+/* Fix for Jellyfin Media Player */
+.quickConnectSettingsContainer {
+    margin-left: 250px !important;
+}
+/* Hide transition on page load */
+.layout-desktop .touch-menu-la.transition {
+    transition: none !important;
+}
+/* Hide hamburger button */
+.layout-desktop .mainDrawerButton {
+    display: none !important;
+}
+/* Fix for dashboard leaking out of the sections */
+.dashboardColumn {
+    flex-shrink: inherit;
+}
+/* Fix for dashboard drawer button height */
+.layout-desktop .dashboardDocument .mainDrawer-scrollContainer {
+    padding-top: 0 !important;
+}
+/* Hide home button */
+.layout-desktop .headerHomeButton {
+    display: none !important;
+}
+.layout-desktop .dashboardDocument .headerHomeButton {
+    display: block !important;
+}
+/* Fix for video player and login page */
+.layout-desktop .hide-scroll .mainDrawer,
+.layout-desktop .hideMainDrawer .mainDrawer {
+    left: -320px !important;
+}
+/* Fix for scroll menus on home page */
+.emby-scroller {
+    margin-right: -2% !important;
+}
+/* Fix for collection items misalignment */
+.layout-desktop .collectionItems .collectionItemsContainer {
+    padding-left: 0 !important;
+}
+/* Dynamic buttons */
+.layout-desktop .navMenuOption:hover:not(.navMenuOption-selected) {
+    transform: scale(1.05) !important;
+}
+.layout-desktop .listItem {
+    transition: .2s !important;
+    border-radius: var(--rounded-cards) !important;
+}
+.layout-desktop #myPreferencesMenuPage .listItem:hover {
+    transform: scale(1.015);
 }
 
-.scrollY {
-  mask-image: linear-gradient(to bottom, transparent, black 1em calc(100% - 1em), transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 1em calc(100% - 1em), transparent);
-  padding: 1em 0;
+
+
+/* Rounded cards */
+.cardContent,
+.cardPadder,
+.cardOverlayContainer,
+.blurhash-canvas,
+.dialog,
+.itemSelectionPanel {
+    border-radius: var(--rounded-cards) !important;
+}
+/* Rounded selection menu */
+.itemSelectionPanel {
+    border: 2px solid var(--primary-accent-color) !important;
+}
+.itemSelectionPanel .checkboxOutline {
+    margin: 7px !important;
 }
 
-.pageTabContent {
-  padding: 0 1em;
+
+
+/* Floating progress bar */
+.innerCardFooter {
+    border-radius: var(--rounded-cards) !important;
+    margin-left: 5px !important;
+    margin-bottom: 5px !important;
+    padding: 5px 15px 5px 5px !important;
+    bottom: 0 !important;
+    background: rgba(0,0,0,0.5) !important;
+    backdrop-filter: blur(var(--blur)) !important;
+}
+.fullInnerCardFooter {
+    bottom: 5% !important;
+    width: 90% !important;
+    margin: auto !important;
+    border-radius: 100px !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+}
+.itemProgressBar:not(.playbackProgress):not(.transcodingProgress):not(.backgroundProgress) {
+    height: 10px !important;
+    background: var(--primary-background-transparent) !important;
+    backdrop-filter: blur(2px) !important;
+}
+.innerCardFooterClear {
+    background-color: rgba(0,0,0,0) !important;
+}
+.innerCardFooter .cardText {
+    padding: 0 0 0 10px !important
+}
+.itemProgressBarForeground:not(.playbackProgress .itemProgressBarForeground):not(.transcodingProgress .itemProgressBarForeground):not(.backgroundProgress .itemProgressBarForeground) {
+    background: var(--primary-accent-color) !important;
+}
+.itemProgressBarForeground {
+    border-radius: 100px !important;
+}
+.transcodingProgress > div {
+    background-color: hsla(0,0%,100%,.2) !important;
+}
+.activeSession .backgroundProgress,
+.activeSession .playbackProgress,
+.activeSession .transcodingProgress {
+    bottom: 10px !important;
+    border-radius: 100px !important;
+    width: 90% !important;
+    left: 5% !important;
+}
+.sessionNowPlayingInnerContent {
+    padding-bottom: 12px !important;
+    padding-inline: 17px !important;
+}
+.sessionAppInfo {
+    padding: .5em 0 !important;
+}
+.sessionNowPlayingInfo {
+    padding: .8em 0 !important;
 }
 
-.appfooter {
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: none !important;
+
+
+/* Green watched indicator */
+.playedIndicator {
+    background: #409843 !important;
 }
 
-::selection {
-  background: var(--accent2-light);
+
+
+/* Rounded left drawer buttons */
+.navMenuOption,
+.navMenuOption:hover,
+.navMenuOption-selected {
+    border-radius: 100px !important;
+    width: 85% !important;
+    margin: auto !important;
+    text-align: center !important;
+    height: 45px !important;
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+}
+.navMenuOption:hover:not(.navMenuOption-selected) {
+    background-color: rgba(44, 44, 44, 0.7);
+}
+/* Center icons and text and shift to the left */
+.navMenuOptionIcon,
+.navMenuOptionText {
+    position: inherit !important;
+    left: -10% !important;
+    margin-top: 0 !important;
+}
+/* Fix for header buttons */
+.layout-desktop .emby-button-foreground {
+    top: -9px !important;
+}
+.layout-tv .emby-button-foreground {
+    top: -14px !important;
 }
 
-/** @format */
-/** @format */
+
+
+/* Custom button color */
+.navMenuOption-selected {
+    background: var(--secondary-accent-color) !important;
+    color: var(--primary-accent-color) !important;
+}
+
+/* Modified background color */
+html,
+.backgroundContainer:not(.withBackdrop):not(.backgroundContainer-transparent),
+.noBackdropTransparency .detailPageSecondaryContainer {
+    background-color: var(--primary-background-color) !important;
+}
+
+
+/* Transparent header bar */
 .skinHeader {
-  background: transparent !important;
-  position: static;
+    background-color: transparent !important;
+}
+.layout-desktop .skinHeader,
+.layout-tv .skinHeader {
+    padding-top: 1.5em !important;
+}
+.layout-tv .skinHeader {
+    padding-bottom: 10px !important;
+}
+/* Rounded header buttons */
+.headerTabs,
+.headerRight {
+    background-color: rgba(0,0,0,0) !important;
+    border-radius: 50px !important;
+    backdrop-filter: blur(var(--blur)) !important;
+}
+.layout-desktop .headerTabs,
+.layout-desktop .headerRight,
+.layout-tv .headerTabs,
+.layout-tv .headerRight {
+    margin-bottom: 10px !important;
+}
+.layout-desktop .headerTabs {
+    margin-left: 160px !important;
+}
+/* Button height */
+.headerRight,
+.emby-tab-button {
+    height: 45px !important;
+}
+/* Lower header and add padding to right buttons */
+.layout-desktop .headerRight {
+    padding: 0 5px !important;
+}
+.layout-tv .headerRight {
+    padding: 20px 10px !important;
+}
+/* Move left header back up */
+.layout-desktop .headerLeft,
+.layout-tv .headerLeft {
+    position: relative !important;
+    top: -17px !important;
+    background-color: rgba(0,0,0,0) !important;
+}
+/* Mobile fixes */
+.layout-mobile .headroom--unpinned {
+    transform: translateY(-50%);
+}
+.layout-mobile .sectionTabs {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: auto !important;
+}
+.layout-mobile .emby-button-foreground {
+    top: -2px !important;
 }
 
-.layout-mobile body,
-.layout-desktop body {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  overflow: hidden !important;
+
+
+/* Player modifications */
+.upNextContainer, .toastVisible {
+    backdrop-filter: blur(var(--blur)) !important;
+}
+.upNextContainer {
+    border-radius: var(--rounded-cards) !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    margin: 4% !important;
+}
+.toastVisible {
+    border-radius: 30px !important;
+    background-color: var(--primary-background-transparent) !important;
+}
+.sliderBubble {
+    border-radius: var(--rounded-cards) !important;
+    background-color: var(--secondary-background-transparent) !important;
+    backdrop-filter: blur(var(--blur)) !important;
+}
+.sliderBubble:not(.osdVolumeSliderContainer .sliderBubble):has(.chapterThumbContainer) {
+    background-color: #ffffff00 !important;
+    top: 25px !important;
+    backdrop-filter: unset !important;
+}
+.mdl-slider-background-flex {
+    height: 10px !important;
+    margin-top: -5px !important;
+    border-radius: 100px !important;
+    background: hsla(0,0%,100%,.2) !important;
+}
+.mdl-slider-background-lower {
+    border-radius: 100px !important;
+    background-color: var(--primary-accent-color) !important;
+}
+.mdl-slider::-moz-range-thumb,
+.mdl-slider::-webkit-slider-thumb {
+    background: #ffffff00 !important;
+    height: 10px !important;
+    width: 8px !important;
+    border-radius: 2px !important;
+}
+.mdl-slider-hoverthumb:hover::-moz-range-thumb,
+.mdl-slider-hoverthumb:hover::-webkit-slider-thumb {
+    transform: scaleY(2);
+    background: #fff !important;
+}
+.mdl-slider-background-upper {
+    border-top-right-radius: 100px !important;
+    border-bottom-right-radius: 100px !important;
+    background: hsla(0,0%,100%,.2) !important;
+    transform: translateX(-3px) !important;
+}
+.iconOsdProgressInner {
+    background: var(--primary-accent-color) !important;
 }
 
-div#reactRoot {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* Up next card */
+.upNextDialog-buttons .upNextDialog-button {
+    transition: .2s !important;
+}
+.upNextDialog-buttons .upNextDialog-button:hover {
+    transform: scale(1.1);
 }
 
-div[data-role=page].page {
-  position: absolute;
-  overflow: hidden visible;
-  mask-image: linear-gradient(to top, black 1em calc(100% - 2em), transparent);
-  -webkit-mask-image: linear-gradient(to top, black 1em calc(100% - 2em), transparent);
-  padding: 2em 0 !important;
+/* Support for Jellyscrub plugin */
+.chapterThumbContainer {
+    background: none !important;
+    border-radius: var(--rounded-cards) !important;
+    box-shadow: unset !important;
 }
-div[data-role=page].page#searchPage {
-  margin-top: 4.4em;
+.chapterThumb {
+    border-radius: var(--rounded-cards) !important;
+    margin-bottom: 47px !important;
+    box-shadow: 0 0 1.9vh #000 !important;
 }
-
-.mainAnimatedPages.skinBody {
-  height: 100%;
-  position: relative;
+.chapterThumbTextContainer {
+    background: none !important;
 }
-
-.selectionCommandsPanel {
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: none !important;
-  box-shadow: 0 0 15px black;
+.chapterThumbText {
+    text-align: center !important;
 }
-
-/** @format */
-.emby-button {
-  position: relative;
-}
-.emby-button[is=emby-button]:not(.emby-tab-button), .emby-button.raised[is=emby-linkbutton]:not(.emby-tab-button) {
-  background: hsl(208, 89%, 20%);
-  border-radius: 100vh;
-  overflow: hidden;
-}
-.emby-button[is=emby-button]:not(.emby-tab-button)::after, .emby-button.raised[is=emby-linkbutton]:not(.emby-tab-button)::after {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 100ms linear;
-}
-.emby-button[is=emby-button]:not(.emby-tab-button):hover::after, .emby-button[is=emby-button]:not(.emby-tab-button):focus::after, .emby-button.raised[is=emby-linkbutton]:not(.emby-tab-button):hover::after, .emby-button.raised[is=emby-linkbutton]:not(.emby-tab-button):focus::after {
-  opacity: 1;
-}
-.emby-button.emby-collapsible-button {
-  box-shadow: none;
-  border: 0 !important;
-  background: transparent !important;
-}
-.emby-button.emby-collapsible-button::after {
-  display: none !important;
+.chapterThumbText-dim {
+    display: none !important;
 }
 
-.paper-icon-button-light {
-  border-radius: 10px;
-}
-
+/* Support for IntroSkipper plugin */
 .skipIntro {
-  background: hsl(208, 89%, 20%) !important;
-  border-radius: 100vh;
-  overflow: hidden;
-  bottom: 12em;
-  color: white !important;
-  border: none;
-  box-shadow: 0 0 15px black;
-  padding: 0.5em;
-  font-size: 1.2em;
-  right: 8em;
+    transition: 0.2s;
+    border-radius: 100px !important;
+    padding: 5px 10px !important;
+    backdrop-filter: blur(var(--blur)) !important;
+    border: none !important;
 }
 .skipIntro:hover {
-  box-shadow: 0 0 15px black !important;
+    box-shadow: unset !important;
+    transition: .2s;
+    transform: scale(1.05);
 }
-.skipIntro::after {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 100ms linear;
+.skipIntro .paper-icon-button-light:hover:not(:disabled) {
+    color: #FFF !important;
 }
-.skipIntro .paper-icon-button-light {
-  z-index: 1;
-  color: white !important;
-}
-.skipIntro:hover::after, .skipIntro:focus::after {
-  opacity: 1;
+.sliderMarker {
+    display: none !important;
 }
 
-.dialog .emby-button:not(.cardImageContainer, .actionSheetMenuItem).button-delete {
-  background: rgb(247, 0, 0) !important;
-}
 
-/** @format */
-/** @format */
-.emby-scroller {
-  overflow: visible !important;
-  margin-top: 0.5em;
-}
 
-.layout-mobile .emby-scroller {
-  overflow-x: scroll !important;
+/* Settings and dashboard modifications */
+.emby-input,
+.emby-textarea,
+.paperList,
+.listItem:hover,
+.subtitleappearance-preview {
+    border-radius: var(--rounded-cards) !important;
 }
-
-.card {
-  contain: none !important;
+.button-submit,
+.emby-select,
+.checkboxOutline,
+.btnRefresh,
+#btnShutdown,
+.raised {
+    border-radius: 100px !important;
 }
-.card.overflowSquareCard .cardScalable {
-  aspect-ratio: 1;
+.button-submit {
+    background: var(--primary-accent-color) !important;
 }
-.card.overflowSquareCard .cardImageContainer::after {
-  background-size: contain !important;
+/* Modify username placement on profile page */
+.layout-desktop #userProfilePage .readOnlyContent div:not([class]), div[class=""]{
+    align-items: initial !important;
 }
-.cardOverlayContainer {
-  background: rgba(0, 0, 0, 0.7);
+.layout-desktop .username {
+    margin: 0 0 10px 10px !important;
 }
-.cardImageIcon {
-  color: transparent;
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
-  background-clip: text;
-  -webkit-background-clip: text;
+/* Red shutdown button */
+#btnShutdown {
+    background: #AE3739 !important;
 }
-.cardScalable {
-  position: relative;
-  aspect-ratio: auto;
-  overflow: hidden;
-  border-radius: 10px 10px 0 0;
-  box-shadow: none !important;
-  width: calc(100% + 1px);
+/* Remove border under certain dashboard items */
+.listItem-border {
+    border: 0 !important;
 }
-.cardScalable > * {
-  border-radius: 0 !important;
-  width: 100%;
-  box-shadow: none !important;
+/* Add padding to list items */
+.layout-desktop .listItem,
+.layout-tv .listItem {
+    padding-inline: 15px !important;
 }
-.cardScalable:not(.imageEditorCard) .cardImageContainer::after, .cardScalable:not(.imageEditorCard) .cardImageContainer::before {
-  content: "";
-  position: absolute;
-  background: inherit;
-}
-.cardScalable:not(.imageEditorCard) .cardImageContainer::after {
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  transform: scale(1);
-  z-index: -1;
-  transition: transform 100ms ease-in-out;
-}
-.cardScalable:not(.imageEditorCard) .cardImageContainer::before {
-  filter: brightness(50%);
-  width: calc(100% + 20px);
-  height: calc(100% + 20px);
-  top: -10px;
-  left: -10px;
-  z-index: -1;
-}
-.card:hover .cardImageContainer::after, .card:focus-visible .cardImageContainer::after {
-  transform: scale(1.1);
-}
-.card.personCard {
-  height: auto;
-}
-.card.personCard .cardPadder-overflowPortrait .cardImageIcon {
-  color: transparent !important;
-}
-.card.personCard .cardBox {
-  position: relative;
-}
-.card.personCard .cardOverlayContainer {
-  background: transparent !important;
-  z-index: 3;
-}
-.card.personCard .cardOverlayButton-br {
-  right: 0.5em;
-  bottom: 0.5em;
-}
-.card.personCard .cardContent {
-  filter: brightness(1);
-  transition: filter 250ms ease-in-out;
-  margin: 1em !important;
-  width: calc(100% - 2em);
-  height: calc(100% - 2em);
-  border-radius: 100% !important;
-}
-.card.personCard .cardScalable {
-  height: auto;
-  aspect-ratio: 1;
-}
-.card.personCard .cardScalable .cardImageContainer::after {
-  background-size: cover;
-}
+/* Rounded dashboard cards */
 .cardBox {
-  margin: 0.5em 1.5em 1.5em 0 !important;
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.75);
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  overflow: hidden;
-  transition: background 100ms;
-}
-.card:not([data-type=Person]) .cardText-secondary {
-  padding-bottom: 0.5em;
-}
-.card:hover .cardBox, .card:focus-visible .cardBox {
-  background: rgba(0, 0, 0, 0.5);
-}
-.card.squareCard .cardScalable {
-  width: 100%;
-  padding-top: 100%;
-}
-
-.card[data-userid] .cardScalable {
-  padding-top: 0 !important;
-}
-.card[data-userid] .cardScalable .cardContent {
-  padding-top: 100% !important;
-}
-
-.cardPadder {
-  background: transparent !important;
-}
-.cardPadder-square {
-  aspect-ratio: 0 !important;
-  padding: 0;
-}
-.cardPadder-square + div {
-  aspect-ratio: 1;
-}
-
-.cardImageContainer.defaultCardBackground {
-  background: transparent;
-}
-
-.innerCardFooter {
-  width: 90%;
-  margin-bottom: 5%;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px;
-}
-.innerCardFooter .itemProgressBar {
-  background: rgba(255, 255, 255, 0.3);
-  height: 0.4em;
-}
-.innerCardFooter .itemProgressBar .itemProgressBarForeground {
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
-}
-
-.cardOverlayContainer {
-  display: flex;
-  flex-flow: column;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.cardOverlayButton {
-  border-radius: 100px !important;
-}
-.cardOverlayButton span {
-  background: linear-gradient(0deg, var(--accent1-light) 10%, var(--accent2-light) 90%) !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
-  transition: 100ms;
-}
-.cardOverlayButton[data-action=resume] {
-  border-radius: 1000px;
-  padding: 1.5em;
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light)) !important;
-  color: white !important;
-}
-.cardOverlayButton[data-action=resume]:hover, .cardOverlayButton[data-action=resume]:focus-visible {
-  filter: brightness(0.5);
-}
-.cardOverlayButton:hover, .cardOverlayButton:focus-visible {
-  transform: scale(1) !important;
-}
-
-.cardIndicators,
-.listItemIndicators {
-  top: 0 !important;
-  right: 0 !important;
-}
-.cardIndicators .indicator,
-.listItemIndicators .indicator {
-  border-radius: 0 0 0 10px;
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
-  padding: 0.2em;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-}
-
-[data-isfolder=true]:is([data-type=CollectionFolder],
-[data-type=UserView]):not([data-type=Series]) .cardText {
-  padding: 0.75em !important;
-}
-
-[data-collectiontype=livetv] .cardText {
-  padding: 0.75em !important;
-}
-
-.cardText:nth-child(4) {
-  display: none;
-}
-
-.defaultCardBackground {
-  background: linear-gradient(130deg, var(--accent1-dark), var(--accent2-dark)) !important;
-}
-
-.chapterCard .innerCardFooter {
-  backdrop-filter: none !important;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 0 1em 1em 0 !important;
-}
-
-.layout-mobile .cardOverlayButton {
-  width: fit-content;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: none !important;
-  border-radius: 10px !important;
-  bottom: 10px;
-  right: 10px;
-}
-
-.devicesList .cardScalable {
-  aspect-ratio: 16/9;
-}
-.devicesList .cardPadder {
-  display: none;
-}
-
-.itemSelectionPanel {
-  border: 1px solid var(--accent1-light);
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 0.5em;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 21%);
-}
-
-.dialogContainer .card .cardImageContainer::before,
-.dialogContainer .card .cardImageContainer::after {
-  display: none !important;
-}
-
-/** @format */
-:not(.dashboardDocument) .mainDrawer {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: none !important;
-}
-:not(.dashboardDocument) .mainDrawer.drawer-open {
-  backdrop-filter: none !important;
-}
-:not(.dashboardDocument) .mainDrawer.drawer-open .scrollContainer {
-  mask-image: linear-gradient(to top, transparent, black 0.5em calc(100% - 0.5em), transparent);
-  -webkit-mask-image: linear-gradient(to top, transparent, black 0.5em calc(100% - 0.5em), transparent);
-}
-:not(.dashboardDocument) .mainDrawer .navMenuOption::after {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 100ms linear;
-}
-:not(.dashboardDocument) .mainDrawer .navMenuOption .navMenuOptionIcon {
-  transition: margin-right 100ms linear;
-}
-:not(.dashboardDocument) .mainDrawer .navMenuOption-selected {
-  background: linear-gradient(130deg, var(--accent2-light), var(--accent1-light)) !important;
-}
-:not(.dashboardDocument) .mainDrawer .navMenuOption:hover .navMenuOptionIcon {
-  margin-right: 1.46em;
-}
-:not(.dashboardDocument) .mainDrawer .navMenuOption:hover::after {
-  opacity: 1;
-}
-
-.mainDrawer.drawer-open .scrollContainer::-webkit-scrollbar-track {
-  box-shadow: none !important;
-}
-.mainDrawer.drawer-open .scrollContainer::-webkit-scrollbar-track-piece {
-  background: transparent !important;
-}
-
-/** @format */
-.inputContainer {
-  position: relative;
-}
-.inputContainer .inputLabel {
-  top: -1.2em;
-  font-size: 0.95em;
-  position: absolute;
-  transition: top 250ms, font-size 250ms;
-}
-.inputContainer .inputLabel-float:not(.inputContainer .inputLabelFocused) {
-  font-size: 1.2em;
-  top: 0;
-}
-.inputContainer .emby-input {
-  background: transparent;
-  border: none;
-  border-bottom: 0.1em solid rgba(255, 255, 255, 0.7);
-  border-radius: 0 !important;
-}
-.inputContainer .emby-input:focus {
-  border-color: var(--accent2-light) !important;
-}
-
-.emby-select {
-  background: transparent;
-  border: none !important;
-  border-bottom: 0.1em solid rgba(255, 255, 255, 0.7) !important;
-  border-radius: 0 !important;
-}
-.emby-select:focus {
-  border-color: var(--accent2-light) !important;
-}
-
-.emby-select:focus ~ .selectArrowContainer {
-  transform: rotate(180deg);
-}
-
-.selectArrowContainer {
-  transition: transform 100ms;
-}
-
-.checkboxOutline {
-  background-color: hsl(208, 89%, 20%) !important;
-  border-color: hsl(208, 89%, 20%) !important;
-  border-radius: 5px !important;
-  /* align-items: center; */
-  /* justify-content: center; */
-}
-
-span.checkboxLabel {
-  position: relative;
-}
-span.checkboxLabel::after {
-  content: "";
-  position: absolute;
-  height: 0.1em;
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 250ms ease-in-out;
-  left: 0;
-  bottom: -0.2em;
-  background-color: white;
-}
-
-.emby-checkbox:focus-visible + span.checkboxLabel::after {
-  transform: scaleX(1);
-}
-
-.checkboxIcon-checked,
-.emby-checkbox-label .checkboxIcon-checked {
-  display: block !important;
-  opacity: 0;
-  transform: rotate(45deg) scale(0);
-  align-items: center;
-  justify-content: center;
-  transition: transform 100ms, opacity 100ms;
-}
-
-.emby-checkbox:checked + span + .checkboxOutline > .checkboxIcon-checked {
-  display: -webkit-flex !important;
-  display: flex !important;
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-.emby-textarea {
-  background: transparent;
-  border: none;
-  border-bottom: 0.1em solid rgba(255, 255, 255, 0.7);
-  border-radius: 0 !important;
-  width: 100%;
-}
-.emby-textarea:focus {
-  border-color: var(--accent2-light) !important;
-}
-
-.checkboxList.paperList {
-  background: rgba(0, 0, 0, 0.5) !important;
-  overflow: auto !important;
-  border-radius: 10px !important;
-}
-
-.paperList {
-  overflow: hidden;
-  border-radius: 20px;
-  background: transparent !important;
-}
-.paperList .listItem {
-  transition: background 250ms;
-  background: rgba(0, 0, 0, 0.5);
-  border: none !important;
-  border-radius: 8px;
-  margin-bottom: 0.3em;
-}
-.paperList .listItem:last-child {
-  border: none;
-  margin-bottom: 0 !important;
-}
-.paperList .listItem:hover, .paperList .listItem:focus-visible {
-  background: rgba(0, 0, 0, 0.7);
-}
-.paperList .listItemIcon {
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
-
-.inputLabelFocused,
-.selectLabelFocused,
-.textareaLabelFocused {
-  color: var(--accent2-light);
-}
-
-/** @format */
-#myPreferencesMenuPage .listItem {
-  border-radius: 10px;
-  transition: background 250ms;
-}
-#myPreferencesMenuPage .listItem:hover {
-  background: black;
-}
-#myPreferencesMenuPage .listItem:hover .listItemIcon {
-  margin-right: 0.5em;
-}
-#myPreferencesMenuPage .listItem-border {
-  border: none !important;
-}
-#myPreferencesMenuPage .listItemIcon {
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  transition: margin-right 250ms;
-}
-
-.dialog {
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 15px !important;
-  overflow: hidden;
-  backdrop-filter: none !important;
-}
-.dialog .smoothScrollY {
-  max-height: 100%;
-}
-.dialog .emby-button:not(.cardImageContainer, .actionSheetMenuItem) {
-  background: rgba(0, 0, 0, 0) !important;
-}
-.dialog .emby-button:not(.cardImageContainer, .actionSheetMenuItem)::after {
-  all: unset !important;
-}
-.dialog .emby-button.actionSheetMenuItem {
-  background: transparent !important;
-}
-.dialog .cardText {
-  display: block !important;
-}
-.dialog .actionSheetContent {
-  margin: 10px !important;
-  padding: 0 !important;
-}
-.dialog .actionSheetScroller {
-  mask-image: none !important;
-  -webkit-mask-image: none !important;
-  padding: 0 !important;
-}
-.dialog .actionSheetMenuItem {
-  border-radius: 5px !important;
-}
-
-.filterDialogContent {
-  height: 100%;
-  overflow: auto;
-}
-
-/** @format */
-a[is=emby-linkbutton]:not(.listItem-border, .navMenuOption) {
-  position: relative;
-  margin-bottom: 0.3em;
-  text-decoration: none !important;
-}
-a[is=emby-linkbutton]:not(.listItem-border, .navMenuOption).button-link {
-  color: var(--accent2-light);
-}
-a[is=emby-linkbutton]:not(.listItem-border, .navMenuOption)::after {
-  content: "" !important;
-  position: absolute;
-  left: 0 !important;
-  bottom: -0.1em;
-  width: 100%;
-  height: 0.1em;
-  background: currentColor;
-  transform-origin: right;
-  transform: scale(0);
-  transition: transform 100ms ease-in-out;
-}
-a[is=emby-linkbutton]:not(.listItem-border, .navMenuOption):hover::after {
-  transform-origin: left;
-  transform: scale(1);
-}
-
-/** @format */
-.sliderBubble {
-  border-radius: 20px;
-  overflow: hidden;
-  background: transparent;
-}
-
-.chapterThumbTextContainer {
-  background: linear-gradient(to top, black 0.25em, rgba(0, 0, 0, 0.25), transparent) !important;
-  padding: 0.5em 0.25em 0.5em !important;
-}
-
-/** @format */
-/** @format */
-#indexPage .sectionTitle {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  color: white;
-  align-items: center;
-  font-size: 1.6em;
-}
-#indexPage .sectionTitle::before {
-  content: "";
-  margin-right: 0.5em;
-  width: 1.3em;
-  height: 2px;
-  background: white;
-}
-#indexPage .emby-scroller .emby-button:not(.cardOverlayButton) {
-  margin-right: 1.2em;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.75);
-  overflow: hidden;
-}
-#indexPage .emby-scroller .emby-button:not(.cardOverlayButton)::after {
-  all: unset;
-}
-#indexPage .emby-scroller .emby-button:not(.cardOverlayButton):hover {
-  background: rgba(0, 0, 0, 0.5);
-}
-#indexPage .section0 .emby-scrollbuttons {
-  display: none;
-}
-#indexPage .section0 .itemsContainer {
-  flex-wrap: wrap;
-}
-
-/** @format */
-#itemDetailPage {
-  --card-width: 14vw;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  overflow-y: auto;
-  padding: 3.2em !important;
-}
-#itemDetailPage .mediaInfoItem.mediaInfoOfficialRating {
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.8);
-  color: #000;
-  border: none;
-  font-weight: 600;
-  white-space: nowrap;
-}
-#itemDetailPage .detailRibbon {
-  height: 60vh;
-  margin-top: 0;
-  background: transparent;
-  font-size: 2.2vh;
-  position: static !important;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-#itemDetailPage .detailRibbon .itemMiscInfo {
-  margin-bottom: 0 !important;
-}
-#itemDetailPage .infoWrapper {
-  display: grid;
-  grid-template-areas: "img text" "img info" "img info";
-  grid-template-columns: var(--card-width) 1fr;
-  column-gap: 2em;
-  row-gap: 1em;
-  grid-template-rows: 1fr auto auto;
-  flex: unset !important;
-  align-items: end;
-}
-#itemDetailPage .infoWrapper .nameContainer {
-  grid-area: text;
-}
-#itemDetailPage .infoWrapper .itemMiscInfo {
-  grid-area: info;
-}
-#itemDetailPage .infoWrapper .itemName {
-  font-size: 3em;
-  color: white;
-}
-#itemDetailPage .infoWrapper .itemName.subtitle {
-  font-size: 1.4em;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-#itemDetailPage .detailImageContainer {
-  grid-area: img;
-  padding: 0 !important;
-  width: var(--card-width);
-}
-#itemDetailPage .detailImageContainer .card {
-  width: 100%;
-  position: static !important;
-  border-radius: 10px;
-}
-#itemDetailPage .detailImageContainer .card .cardBox {
-  margin: 0 !important;
-}
-#itemDetailPage .detailPageWrapperContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-#itemDetailPage .detailPageWrapperContainer > * {
-  padding: 0 !important;
-  background: transparent;
-}
-#itemDetailPage .detailPageContent {
-  padding-left: 0 !important;
-}
-#itemDetailPage .mainDetailButtons .emby-button:not([data-action=resume], [data-action=play]) {
-  background: transparent !important;
-}
-#itemDetailPage .detailLogo {
-  display: none;
-}
-#itemDetailPage .emby-button {
-  background: transparent !important;
-  border-radius: 10vh;
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  margin-right: 0.5em !important;
-}
-#itemDetailPage .emby-button[is=emby-linkbutton] {
-  color: unset;
-}
-#itemDetailPage .emby-button:not([is=emby-linkbutton]):hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: white;
-}
-#itemDetailPage .emby-button:not([is=emby-linkbutton])::after {
-  display: none;
-}
-#itemDetailPage .emby-button[title=Play], #itemDetailPage .emby-button[title=Resume] {
-  background: white !important;
-  color: black;
-  padding: 0.4em 1em !important;
-  gap: 0.6em;
-  margin-right: 0.5em;
-  width: var(--card-width);
-}
-#itemDetailPage .emby-button[title=Play]::after, #itemDetailPage .emby-button[title=Resume]::after {
-  content: attr(title);
-  display: block;
-  opacity: 1;
-  background: transparent;
-  position: static;
-  font-weight: 500;
-  height: fit-content;
-  font-size: 1.5em;
-  width: fit-content;
-}
-#itemDetailPage .emby-button[title=Play]:hover, #itemDetailPage .emby-button[title=Resume]:hover {
-  background: hsl(0, 0%, 80%) !important;
-  color: black;
-}
-#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list {
-  padding: 0;
-}
-#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem .paper-icon-button-light[data-action=menu]::after {
-  content: "";
-  margin-left: 100%;
-}
-#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem .paper-icon-button-light.listItemImageButton {
-  aspect-ratio: 1;
-  border-radius: 100%;
-  background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
-  color: white;
-  opacity: 0;
-  box-shadow: 0 0 0 10em rgba(255, 255, 255, 0.1);
-  transition: opacity 250ms;
-}
-#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem[data-type=Episode] {
-  padding: 0;
-  margin: 0 !important;
-  background: transparent !important;
-}
-#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem[data-type=Episode] .listItem-content {
-  display: grid;
-  grid-template-columns: 25% 1fr 15%;
-  align-content: center;
-  align-items: center;
-}
-#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem[data-type=Episode] .listItem-content:hover .listItemImageButton {
-  opacity: 1;
-}
-#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItemImage-large {
-  justify-self: center;
-  margin: 2em !important;
-  border-radius: 10px;
-  overflow: hidden;
-  height: 12em;
-}
-#itemDetailPage .listItem {
-  flex-flow: column !important;
-}
-#itemDetailPage .listItem[data-mediatype=Audio] {
-  flex-flow: row !important;
-  grid-column: auto/span 3;
-}
-#itemDetailPage .detailsGroupItem {
-  max-width: 100% !important;
-}
-#itemDetailPage .detailSection {
-  display: grid;
-  grid-template-areas: "content selector" "detailGroup detailGroup" "recording recording";
-  grid-template-columns: 1fr 40%;
-  gap: 2em;
-}
-#itemDetailPage .detailSection .itemDetailsGroup {
-  grid-area: detailGroup;
-}
-#itemDetailPage .detailSection .recordingFields {
-  grid-area: recording;
-}
-#itemDetailPage .detailSection .detailSectionContent {
-  grid-area: content;
-}
-#itemDetailPage .detailSection .trackSelections {
-  grid-area: selector;
-}
-#itemDetailPage .tagline {
-  border-left: 0.25em solid rgb(255, 255, 255);
-  padding: 0 0.5em;
-  color: white;
-}
-#itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) {
-  --card-width: 24vw;
-}
-#itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) .detailPagePrimaryContainer {
-  margin-top: 8.5vh;
-}
-#itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) .detailRibbon {
-  height: 43vh;
-}
-
-.layout-mobile #itemDetailPage {
-  --card-width: 100%;
-}
-.layout-mobile #itemDetailPage .itemBackdrop {
-  position: absolute !important;
-  width: 100vw;
-  height: 90vh !important;
-  top: 0;
-  left: 0;
-  filter: brightness(65%);
-  margin-top: 0 !important;
-  mask-image: linear-gradient(to bottom, black, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
-}
-.layout-mobile #itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) .detailRibbon {
-  height: 60vh;
-  --card-width: 100%;
-}
-.layout-mobile #itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) .detailRibbon .detailImageContainer .card {
-  max-width: 80vw !important;
-  min-width: 80vw !important;
-}
-.layout-mobile #itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) .itemBackdrop {
-  height: 55vh !important;
-}
-.layout-mobile #itemDetailPage .detailRibbon {
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  margin-top: 0 !important;
-}
-.layout-mobile #itemDetailPage .detailImageContainer {
-  position: static;
-  overflow: hidden;
-  padding: 0 !important;
-}
-.layout-mobile #itemDetailPage .detailImageContainer .card {
-  top: 0;
-  max-width: 60vw !important;
-  min-width: 60vw;
-  margin: auto !important;
-  position: static !important;
-  transform: none;
-  filter: none !important;
-}
-.layout-mobile #itemDetailPage .detailImageContainer .cardBox {
-  margin: 0 !important;
-  box-shadow: none;
-}
-.layout-mobile #itemDetailPage .detailSection {
-  display: flex;
-  flex-direction: column;
-  margin-top: 2em;
-  font-size: 1.3em;
-}
-.layout-mobile #itemDetailPage .detailPageContent {
-  padding-right: 0;
-}
-.layout-mobile #itemDetailPage .itemMiscInfo {
-  justify-content: flex-start;
-}
-.layout-mobile #itemDetailPage .infoText {
-  text-align: start;
-  width: fit-content !important;
-}
-.layout-mobile #itemDetailPage .infoWrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 0 !important;
-}
-.layout-mobile #itemDetailPage .mainDetailButtons {
-  flex-direction: row;
-  flex-wrap: wrap;
-  row-gap: 0.5em !important;
-  column-gap: 0.5em !important;
-}
-.layout-mobile #itemDetailPage .mainDetailButtons .emby-button[title=Play],
-.layout-mobile #itemDetailPage .mainDetailButtons .emby-button[title=Resume] {
-  width: 100%;
-}
-.layout-mobile #itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list {
-  grid-template-columns: 1fr;
-}
-.layout-mobile #itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItemImage {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100%;
-  flex-shrink: 0;
-  flex-grow: 1;
-  flex-basis: 20vh;
-}
-.layout-mobile #itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem-bottomoverview {
-  font-size: 88%;
-  margin-bottom: 1em;
-  margin-top: 0.2em;
-  padding: 0 1em 1em 1em;
-}
-.layout-mobile #itemDetailPage .emby-button {
-  margin: 0 !important;
-}
-
-@media (orientation: landscape) {
-  .layout-mobile #itemDetailPage .detailRibbon {
-    flex-direction: row;
-    margin-top: 10vh !important;
-    justify-content: center;
-    align-items: center;
-  }
-  .layout-mobile #itemDetailPage .detailRibbon .infoWrapper {
-    display: grid;
-    grid-template-areas: "card name" "card info";
-    flex-direction: row;
-    flex-basis: 50vw;
-    align-items: center;
-  }
-  .layout-mobile #itemDetailPage .detailRibbon .infoWrapper .detailImageContainer {
-    grid-area: card;
-  }
-  .layout-mobile #itemDetailPage .detailRibbon .infoWrapper .nameContainer {
-    grid-area: name;
-    align-self: self-end;
-    justify-self: flex-end;
-    width: calc(100% - 1.2em);
-    text-overflow: ellipsis;
-  }
-  .layout-mobile #itemDetailPage .detailRibbon .infoWrapper .itemMiscInfo-primary {
-    grid-area: info;
-    align-self: self-start;
-    justify-self: flex-end;
-    width: calc(100% - 1.2em);
-    text-overflow: ellipsis;
-  }
-  .layout-mobile #itemDetailPage .detailRibbon .infoText {
-    text-align: start;
+    border-radius: var(--rounded-cards) !important;
+}
+/* Removed ugliness of border-card styling */
+.layout-desktop fieldset.verticalSection-extrabottompadding,
+.layout-tv fieldset.verticalSection-extrabottompadding {
+    border-radius: var(--rounded-cards) !important;
+    border-color: #3B3B3B !important;
+    padding: 10px 35px !important;
+}
+/* Rounded tab selections in dashboard */
+.layout-desktop .localnav {
+    border-radius: 100px !important;
+    background: #202020 !important;
     width: fit-content !important;
-    font-size: 3.2em;
-    max-width: fit-content;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    overflow: hidden;
-  }
-  .layout-mobile #itemDetailPage .detailImageContainer .card {
-    min-width: 20vw;
-    max-width: 40vw !important;
-    width: 100%;
-  }
-  .layout-mobile #itemDetailPage .mainDetailButtons {
-    width: fit-content;
+}
+.layout-desktop a[data-role="button"] {
+    background: none !important;
+}
+.layout-desktop div[data-role="controlgroup"] a.ui-btn-active {
+    background: var(--primary-accent-color) !important;
+    border-radius: 100px !important;
+}
+.layout-desktop .dashboardDocument .mainAnimatedPage {
+    left: 260px !important;
+}
+#libraryDisplayPage,
+#metadataImagesConfigurationPage,
+#metadataNfoPage {
+    margin-top: 40px !important;
+}
+#mediaLibraryPage {
+    margin-top: 10px !important;
+}
+/* Re-align active devices in dashboard */
+.activeDevices.itemsContainer {
     margin: 0 !important;
-    padding: 0 !important;
-    flex-basis: 50vw;
-    font-size: 1.5em;
-  }
-  .layout-mobile #itemDetailPage .parentName a {
-    text-align: start;
-  }
 }
-/** @format */
-@media (min-width: 40em) {
-  .dashboardDocument .skinBody {
-    width: calc(100% - 20em);
-  }
+.playbackProgress > div {
+    background: var(--primary-accent-color) !important;
 }
-.dashboardDocument .headerTabs {
-  margin-left: 0;
-  width: auto;
+/* IntroSkipper settings */
+.layout-desktop summary {
+    border-radius: 100px !important;
 }
-
-.dashboardColumn:first-child .dashboardSection .paperList {
-  background: rgba(0, 0, 0, 0.5) !important;
-  font-size: 1.1em;
-  color: rgba(255, 255, 255, 0.7);
+.layout-desktop fieldset.verticalSection-extrabottompadding,
+.layout-tv fieldset.verticalSection-extrabottompadding {
+    padding: 10px 35px 20px 35px !important;
 }
-
-.layout-mobile .dashboardDocument .headerTabs {
-  width: 100%;
+#intro_reqs,
+#edl,
+#silence,
+#support {
+    padding-bottom: 10px !important;
 }
-
-.MuiBox-root .mainAnimatedPages {
-  width: 100%;
-  height: auto;
-  overflow: visible;
+/* Dashboard fixes for 10.9.x */
+.layout-desktop #userProfilesPage {
+    left: 260px !important;
 }
-
-body.dashboardDocument {
-  overflow: auto !important;
+.MuiAlert-message {
+    color: #fff !important;
 }
-body.dashboardDocument div[data-role=page] {
-  position: relative !important;
-  width: 100%;
-  height: fit-content;
-  overflow: visible;
-  mask-image: none !important;
-  -webkit-mask-image: none !important;
-  left: 0 !important;
+.MuiDataGrid-root.MuiDataGrid-withBorderColor {
+    border-radius: var(--rounded-cards) !important;
 }
-
-/** @format */
-#loginPage {
-  mask-image: none;
-  -webkit-mask-image: none;
+.infoBanner {
+    border-radius: var(--rounded-cards) !important;
 }
-#loginPage:after {
-  content: "";
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: url("https://cdn.jsdelivr.net/gh/prayag17/JellySkin/src/assets/background.png");
-  background-size: cover;
-  z-index: -1;
+.MuiToggleButton-root.MuiToggleButtonGroup-groupedHorizontal {
+    border-radius: var(--rounded-cards);
+    padding-inline: 15px !important;
 }
-#loginPage > div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0 !important;
-  min-width: 40vw;
-  max-width: 50vw;
-  z-index: 2;
+.MuiAppBar-root.MuiAppBar-positionFixed {
+    padding: 10px !important;
 }
-#loginPage #divUsers {
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  overflow: auto;
+.MuiAppBar-root.MuiAppBar-positionFixed.MuiAppBar-colorPrimary {
+    background: var(--primary-background-transparent) !important;
+    backdrop-filter: blur(var(--blur)) !important;
 }
-#loginPage #divUsers .card {
-  width: 30%;
+.MuiList-root.MuiList-subheader {
+    padding-left: 10px !important;
 }
-#loginPage #divUsers .card .cardBox {
-  box-shadow: none !important;
+.MuiList-subheader .MuiListItem-root.MuiListItem-gutters {
+    width: 85% !important;
+    margin-inline: auto !important;
 }
-#loginPage .emby-button {
-  background: transparent;
-  border: 0.2em solid;
+.MuiList-subheader .MuiListItemButton-root.MuiListItemButton-gutters {
+    border-radius: 100px !important;
+    margin: 2px 0 !important;
+    transition: .2s !important;
+    height: 45px !important
 }
-#loginPage .emby-button::after {
-  all: unset !important;
+.MuiList-subheader .MuiListItemButton-root.MuiListItemButton-gutters:not(.Mui-selected) .MuiListItemIcon-root,
+.MuiList-subheader .MuiListItemButton-root.MuiListItemButton-gutters:not(.Mui-selected) {
+    color: #D1D1D1
 }
-#loginPage .emby-button:hover, #loginPage .emby-button:focus-visible {
-  background: rgba(255, 255, 255, 0.2);
+.MuiList-subheader .MuiListItemButton-root.MuiListItemButton-gutters:hover:not(.Mui-selected) {
+    transform: scale(1.05) !important;
+    background: rgba(44, 44, 44, 0.7) !important;
 }
-#loginPage .checkboxOutline {
-  background: transparent !important;
-  border: 0.152em solid white !important;
+.MuiListItemButton-root.Mui-selected {
+    background: var(--secondary-accent-color) !important;
 }
-#loginPage .inputLabelFocused,
-#loginPage .emby-input:focus {
-  color: white !important;
-  border-bottom-color: white !important;
+.MuiListItemButton-root.Mui-selected .MuiListItemIcon-root,
+.MuiListItemButton-root.Mui-selected {
+    color: var(--primary-accent-color) !important;
+}
+.MuiPaper-root.MuiDrawer-paperAnchorDockedLeft {
+    border-right: none !important;
+    background: var(--secondary-background-color) !important;
+    width: 250px !important;
+}
+.MuiListItemIcon-root.MuiSvgIcon-fontSizeMedium {
+    color: inherit !important;
+}
+.MuiPaper-root.MuiPopover-paper {
+    background: #252525 !important;
+    color: #D1D1D1 !important;
+    border-radius: var(--rounded-cards) !important;
+}
+.listItemIcon:not(.listItemIcon-transparent):not(.notification_important) {
+    background: var(--secondary-accent-color) !important;
+    color: var(--primary-accent-color) !important;
+}
+.MuiList-root:not(.MuiList-subheader) .MuiListItemButton-root.MuiListItemButton-gutters {
+    padding: 20px 38px 10px 38px !important;
+}
+.MuiCollapse-root.MuiCollapse-vertical .MuiListItemButton-root.MuiListItemButton-gutters {
+    width: 85% !important;
+    margin-inline: auto !important;
+    padding: 8px 16px !important;
 }
 
-.layout-mobile #loginPage > div {
-  width: 85vw;
-  max-width: 85vw;
+
+
+/* Metadata editor fixes */
+.layout-desktop .editPageSidebar {
+    width: 25vw !important;
+}
+.layout-desktop .editPageInnerContent {
+    width: 74vw !important;
+}
+.jstree-default-large .jstree-node {
+    line-height: 35px !important;
+}
+.jstree-default .jstree-wholerow-clicked {
+    background: var(--secondary-accent-color) !important;
+}
+.jstree-wholerow-hovered {
+    background: var(--primary-background-transparent) !important;
+}
+.jstree-children {
+    margin-left: -10px !important;
+}
+#editItemMetadataPage .btnHeaderSave {
+    background: var(--primary-accent-color) !important;
+    border-radius: 100px !important;
+    height: 40px !important;
+    color: white !important;
 }
 
-/** @format */
-@media (orientation: portrait) and (max-width: 43em) {
-  .nowPlayingInfoContainer {
+
+
+/* Resize show/movie image on details page */
+.layout-desktop .detailImageContainer .card {
+    top: 9em !important;
+    width: 18.3vw !important;
+}
+
+/* Re-position content on details page */
+.layout-desktop .detailSection {
+    margin-right: 0 !important;
+}
+.layout-desktop .detailPageContent {
+    padding-left: 3.3% !important;
+}
+
+/* Re-position logo */
+.layout-desktop .detailLogo,
+.layout-tv .detailLogo {
+    right: 0 !important;
+    left: 4% !important;
+    top: 10% !important;
+}
+
+/* Transparent ribbon bar */
+.detailRibbon {
+    background: transparent !important;
+}
+
+/* Add card around top-right buttons */
+.mainDetailButtons {
+    background: var(--primary-background-transparent) !important;
+    border-radius: 100px !important;
+    backdrop-filter: blur(var(--blur)) !important;
+}
+
+/* Add card around groups section */
+.layout-desktop .detailsGroupItem {
+    background: var(--secondary-background-color) !important;
+    padding: 10px 20px !important;
+    border-radius: 100px !important;
+    width: fit-content !important;
+    max-width: max-content !important;
+    display: flex;
+    gap: 1em;
+}
+
+/* Fix for group section labels */
+.detailsGroupItem .label, .trackSelections .selectContainer .selectLabel {
+    min-width: 75px;
+    flex-basis: unset;
+    margin: unset;
+}
+
+/* Alternative mobile group section card */
+.layout-mobile .itemDetailsGroup {
+    background: var(--secondary-background-color) !important;
+    padding: 15px 20px 5px 20px !important;
+    border-radius: var(--rounded-cards) !important;
+}
+
+/* Add card around description */
+.layout-desktop .detailSectionContent {
+    background: var(--secondary-background-color) !important;
+    border-radius: var(--rounded-cards) !important;
+    padding: 40px 20px 10px 20px !important;
+    margin-top: 50px !important;
+}
+.layout-mobile .detailSectionContent {
+    background: var(--secondary-background-color) !important;
+    border-radius: var(--rounded-cards) !important;
+    padding: 10px 20px !important;
+}
+
+/* Add card around track selection */
+.trackSelections {
+    background: var(--secondary-background-color) !important;
+    border-radius: var(--rounded-cards) !important;
+    padding: 10px 20px !important;
+    margin-top: 20px !important;
+}
+
+/* Fix for track select dropdowns */
+.trackSelections .selectContainer .detailTrackSelect {
+    padding: 0 10px;
+}
+
+/* Re-position title */
+.layout-desktop .infoWrapper {
+    margin-top: 245px !important;
+    margin-left: 20.4vw !important;
+}
+.layout-desktop .detailPagePrimaryContainer {
+    padding-left: 3.3% !important;
+}
+.layout-desktop .nameContainer {
+    position: absolute !important;
+    margin-top: -55px !important;
+}
+.layout-desktop .itemMiscInfo {
+    position: absolute !important;
+    margin-left: 21px !important;
+    margin-top: 16px !important;
+}
+
+/* Move description box */
+.layout-desktop .detailPagePrimaryContent {
+    padding-left: 20.4vw !important;
+}
+/* Padding for 2:3 posters */
+.layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .portraitCard) .detailPagePrimaryContent {
+    min-height: 29vw !important;
+}
+/* Padding for 1:1 posters */
+.layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .squareCard) .detailPagePrimaryContent {
+    min-height: 20vw !important;
+}
+/* Padding for 16:9 posters */
+.layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .backdropCard) .detailPagePrimaryContent {
+    min-height: 12vw !important;
+}
+/* Fix for JMP */
+@supports not selector(:has(*)) {
+    .layout-desktop .detailPageWrapperContainer .detailPagePrimaryContent {
+        min-height: 29vw !important;
+    }
+}
+
+/* Move track selection box */
+.detailSection {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+}
+.detailSection .detailSectionContent {
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    box-ordinal-group: 1;
+}
+.detailSection .recordingFields {
+    -webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    box-ordinal-group: 2;
+}
+.detailSection .trackSelections {
+    -webkit-box-ordinal-group: 3;
+    -moz-box-ordinal-group: 3;
+    box-ordinal-group: 3;
+}
+.detailSection .itemDetailsGroup {
+    -webkit-box-ordinal-group: 4;
+    -moz-box-ordinal-group: 4;
+    box-ordinal-group: 4;
+}
+/* Move episode title */
+.layout-desktop .nameContainer {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+}
+.layout-desktop .nameContainer .parentName {
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    box-ordinal-group: 1;
+}
+.layout-desktop .nameContainer .itemName {
+    -webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    box-ordinal-group: 2;
+    margin: 0.45em 0 0 0 !important;
+}
+/* Modify play button */
+.layout-desktop .mainDetailButtons .btnPlay::after {
+    content: "Play" !important;
+}
+.layout-desktop .mainDetailButtons .btnPlay {
+    position: relative !important;
+    margin-right: -85px !important;
+    padding-right: 20px !important;
+    right: 110px !important;
+    background: var(--primary-accent-color) !important;
+    border-radius: 100px !important;
+    color: var(--secondary-background-color) !important;
+}
+.layout-desktop .mainDetailButtons .detailButton {
+    -webkit-flex-direction: row !important;
+    flex-direction: row !important;
+}
+
+
+
+/* Live TV */
+/* Modified background color of active guide cells */
+.programCell-active {
+    background: var(--secondary-background-color) !important;
+}
+/* Repositioned record button */
+.recordingFields {
+    margin: 5px 0 -7px 0 !important;
+}
+.recordingButton {
+    height: 40px !important;
+}
+.recordingIcon {
+    color: red !important;
+}
+/* Remove overlapping text */
+.itemMiscInfo.itemMiscInfo-secondary {
+    margin-left: 65px !important;
+}
+
+
+
+/* Music Player */
+.layout-desktop .appfooter {
+    margin-left: 250px !important;
+}
+.layout-desktop .appfooter .nowPlayingBarInfoContainer {
+    margin-left: 10px !important;
+}
+.layout-desktop .volumeOsd {
+    border-radius: var(--rounded-cards) !important;
+    background: var(--secondary-background-transparent) !important;
+}
+.layout-desktop .nameContainer .musicParentName {
+    margin-top: 18px !important;
+    margin-right: 22px !important;
+}
+.layout-desktop .appfooter .nowPlayingBar {
+    margin-top: 20px !important;
+}
+.layout-desktop .appfooter .nowPlayingBar .nowPlayingBarPositionContainer {
+    top: -15px !important;
+}
+
+
+
+/* Fix for scaling issues */
+@media (width: 1600px) {
+    .layout-desktop .headerRight {
+        margin-bottom: 0 !important;
+    }
+    .layout-desktop .emby-button-foreground {
+        top: -4px !important;
+    }
+}
+@media (max-width: 1599px) {
+    .layout-desktop .pageTitleWithLogo {
+        margin-left: 25px !important;
+    }
+    .layout-desktop .headerTabs {
+        margin-top: -65px !important;
+    }
+    .layout-desktop .headerRight {
+        margin-right: 15px !important;
+    }
+    .layout-desktop .sectionTabs {
+        width: auto !important;
+        align-self: center !important;
+    }
+    .layout-desktop .emby-button-foreground {
+        top: -2px !important;
+    }
+}
+
+
+
+/* Fixes for TV Layout */
+.layout-tv .sectionTabs {
+    width: auto !important;
+}
+.layout-tv .headerLeft {
+    padding: 5px !important;
+}
+
+
+
+/* Login page */
+.layout-desktop #loginPage {
+    display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .nowPlayingPageImageContainer {
-    flex-grow: 0;
-  }
 }
-.nowPlayingSongName {
-  font-size: 1.5em;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.layout-desktop #loginPage .padded-left.padded-right.padded-bottom-page.margin-auto-y {
+    background: var(--secondary-background-color) !important;
+    width: 400px !important;
+    border-radius: 25px !important;
+    padding: 50px !important;
+}
+.layout-desktop #loginPage .manualLoginForm .btnCancel {
+    position: absolute !important;
+    background: none !important;
+    width: 100px !important;
+    margin-left: -10px !important;
+    margin-top: 70px !important;
+    text-align: left !important;
+}
+.layout-desktop #loginPage .visualLoginForm {
+    position: relative !important;
+    background: var(--secondary-background-color) !important;
+    z-index: 1000 !important;
+}
+.layout-desktop #loginPage .btnForgotPassword {
+    background: none !important;
+    font-weight: normal !important;
+    width: 150px !important;
+    text-align: right !important;
+    position: absolute !important;
+    margin-left: 255px !important;
+    margin-top: -195px !important;
+    font-size: smaller !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    z-index: 1 !important;
+}
+.layout-desktop #loginPage .loginDisclaimerContainer {
+    top: 130px !important;
+    position: relative !important;
+    left: -50px !important;
+    width: 500px !important;
+    margin-top: -35px !important;
+}
+.layout-desktop #loginPage .squareCard {
+    width: 25% !important;
+    font-size: smaller !important;
+}
+@media (max-width: 100em) {
+    .layout-desktop #loginPage .squareCard {
+        width: 20% !important;
+    }
+    .layout-desktop #loginPage .padded-left.padded-right.padded-bottom-page.margin-auto-y {
+        width: 600px !important;
+    }
+    .layout-desktop #loginPage .btnForgotPassword {
+        margin-left: 450px !important;
+    }
+    .layout-desktop #loginPage .disclaimerContainer {
+        width: 700px !important;
+    }
+}
+@media (max-width: 87.5em) {
+    .layout-desktop #loginPage .squareCard {
+        width: 20% !important;
+    }
+}
+@media (max-width: 75em) {
+    .layout-desktop #loginPage .squareCard {
+        width: 20% !important;
+    }
+}
+@media (max-width: 43.75em) {
+    .layout-desktop #loginPage .squareCard {
+        width: 20% !important;
+    }
 }
 
-.subtitleSync {
-  top: 8em;
-  left: 0;
+
+
+/* Dialog box */
+.dialog {
+    background-color: var(--secondary-background-color) !important;
 }
-.subtitleSyncContainer {
-  background-color: rgba(0, 0, 0, 0.75);
-  backdrop-filter: none !important;
+.actionSheetTitle {
+    margin: 10px 20px !important;
 }
 
-.sliderBubble {
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: none !important;
+
+
+/* Dynamic backdrop support */
+
+/* Translucent cards */
+.layout-desktop #itemDetailPage:not(.noBackdropTransparency) .detailsGroupItem,
+.layout-desktop #itemDetailPage:not(.noBackdropTransparency) .detailSectionContent,
+.layout-desktop #itemDetailPage:not(.noBackdropTransparency) .trackSelections {
+    background: var(--primary-background-transparent) !important;
+    backdrop-filter: blur(var(--blur)) !important;
 }
 
-.osdTextContainer {
-  font-family: monospace;
+/* Transparent drawer */
+.layout-desktop .backgroundContainer.withBackdrop + div .mainDrawer {
+    background: linear-gradient(to right, #10101090, transparent) !important;
+}
+.layout-desktop:has(#itemDetailPage.noBackdropTransparency) .mainDrawer {
+    background: var(--secondary-background-color) !important;
+}
+/* Fix for JMP */
+@supports not selector(:has(*)) {
+    .layout-desktop .backgroundContainer.withBackdrop + div .mainDrawer {
+        background: transparent !important;
+    }
+    #itemDetailPage.noBackdropTransparency::after {
+        position: fixed;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        background: var(--secondary-background-color);
+    }
+}
+
+/* Blur buttons */
+.layout-desktop:has(.backgroundContainer.withBackdrop) .navMenuOption-selected {
+    backdrop-filter: blur(var(--blur)) !important;
+}
+.layout-desktop:has(.backgroundContainer.withBackdrop) .navMenuOption:hover:not(.navMenuOption-selected) {
+    background: var(--primary-background-transparent) !important;
+    backdrop-filter: blur(var(--blur)) !important;
 }
 
 html,
@@ -1251,7 +1056,7 @@ h2,
 h2,
 h4,
 h5 {
-  font-family: "Plus Jakarta Sans", sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 /*# sourceMappingURL=main.css.map */
