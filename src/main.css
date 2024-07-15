@@ -810,54 +810,8 @@ html,
 }
 
 /* Move track selection box */
-.detailSection {
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    box-orient: vertical;
-}
-.detailSection .detailSectionContent {
-    -webkit-box-ordinal-group: 1;
-    -moz-box-ordinal-group: 1;
-    box-ordinal-group: 1;
-}
-.detailSection .recordingFields {
-    -webkit-box-ordinal-group: 2;
-    -moz-box-ordinal-group: 2;
-    box-ordinal-group: 2;
-}
-.detailSection .trackSelections {
-    -webkit-box-ordinal-group: 3;
-    -moz-box-ordinal-group: 3;
-    box-ordinal-group: 3;
-}
-.detailSection .itemDetailsGroup {
-    -webkit-box-ordinal-group: 4;
-    -moz-box-ordinal-group: 4;
-    box-ordinal-group: 4;
-}
-/* Move episode title */
-.layout-desktop .nameContainer {
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    box-orient: horizontal;
-}
-.layout-desktop .nameContainer .parentName {
-    -webkit-box-ordinal-group: 1;
-    -moz-box-ordinal-group: 1;
-    box-ordinal-group: 1;
-}
-.layout-desktop .nameContainer .itemName {
-    -webkit-box-ordinal-group: 2;
-    -moz-box-ordinal-group: 2;
-    box-ordinal-group: 2;
-    margin: 0.45em 0 0 0 !important;
-}
+
+/*}*/
 /* Modify play button */
 .layout-desktop .mainDetailButtons .btnPlay::after {
     content: "Play" !important;
