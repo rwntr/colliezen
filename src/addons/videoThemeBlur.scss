@@ -1,0 +1,7 @@
+/** @format */
+
+@use "../abstract/variables" as *;
+.videoPlayerContainer ~ #reactRoot .backgroundContainer.withBackdrop {
+	backdrop-filter: none !important;
+	opacity: 1;
+}
