@@ -8,7 +8,7 @@
 	}
 }
 .backdropContainer {
-	filter: blur($filter-blur-default)
+	filter: opacity(25%)
 		brightness($filter-brightness-default)
 		saturate($filter-saturation-default)
 		contrast($filter-contrast-default);
