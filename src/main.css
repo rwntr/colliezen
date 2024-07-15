@@ -13,6 +13,64 @@
     --blur: 10px;
 }
 
+/*This section contains color and style changes from the colorful "Ultrachromic" variant*/
+:root {--accent: 98, 121, 205;}
+:root {--indicator: var(--accent);}
+:root {--selection: var(--accent);}
+
+/*Login background*/
+#loginPage {
+    background: url(https://i.imgur.com/9vL4iNf.png) !important;
+    background-size: cover !important;
+}
+
+/*Various box-shadows, might be related to glowstyle*/
+.cardBox:not(.visualCardBox) .cardPadder, .cardContent-shadow {
+    box-shadow: none !important;
+}
+body, h1, h2, h3, h4, .textActionButton, .emby-button-foreground  {
+    text-shadow: 0px 0px 4px rgba(0,0,0,.6) !important;
+}
+.blurhashed {
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.6) !important;
+}
+
+/*Dash and general UI styling*/
+.paperList, .visualCardBox {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.navMenuOption-selected {
+    color: white;
+}
+progress {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+/*Colors for loading spinner, placeholders, scroll bars*/
+.mdl-spinner__layer-1 {border-color: rgba(var(--accent), 1);}
+.mdl-spinner__layer-2 {border-color: rgba(var(--accent), .8);}
+.mdl-spinner__layer-3 {border-color: rgba(var(--accent), .6);}
+.mdl-spinner__layer-4 {border-color: rgba(var(--accent), .5);}
+
+
+.defaultCardBackground1 {
+    background-color: rgba(var(--accent), .5);
+}
+.defaultCardBackground2 {
+    background-color: rgba(var(--accent), .4);
+}
+.defaultCardBackground3 {
+    background-color: rgba(var(--accent), .8);
+}
+.defaultCardBackground4 {
+    background-color: rgba(var(--accent), .7);
+}
+.defaultCardBackground5 {
+    background-color: rgba(var(--accent), .6);
+}
+
+
+
 /* Setting accent color variable */
 .emby-checkbox:checked + span + .checkboxOutline,
 .selectionCommandsPanel,
@@ -29,13 +87,11 @@
 .emby-input:focus,
 .emby-textarea:focus,
 .emby-select-withcolor:focus,
-.mdl-spinner__layer-1,
-.mdl-spinner__layer-2,
-.mdl-spinner__layer-3,
-.mdl-spinner__layer-4,
 .progressring-spiner {
     border-color: var(--primary-accent-color) !important;
 }
+
+
 .button-link:not(.itemDetailPage .button-link),
 .selectLabelFocused,
 .textareaLabelFocused,
