@@ -1,10 +1,10 @@
-/** @format test4*/
+/** @format test5*/
 /** @format */
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 /* Variables */
 :root {
-    --primary-accent-color: #00a4dc;
-    --secondary-accent-color: #00a4dc20;
+    --primary-accent-color: linear-gradient(to right, #F8C8DC, #94C4FF);
+    --secondary-accent-color: linear-gradient(to right, #E2789D, #7C9FD0);
     --primary-background-color: #101010;
     --secondary-background-color: #181818;
     --primary-background-transparent: rgba(35,35,35,0.5);
@@ -17,6 +17,8 @@
 :root {--accent: 98, 121, 205;}
 :root {--indicator: var(--accent);}
 :root {--selection: var(--accent);}
+
+
 
 /*Login background*/
 #loginPage {
@@ -125,10 +127,13 @@ progress {
     /* Move drawer behind header */
     z-index: 998 !important;
 }
-/* Lower drawer buttons */
+
 .layout-desktop .mainDrawer-scrollContainer {
     margin-top: 95px !important;
     margin-left: 10px !important;
+    scrollbar-width:none;
+    filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4));
+
 }
 .layout-mobile .mainDrawer-scrollContainer {
     margin-top: 15px !important;
@@ -267,7 +272,20 @@ progress {
     padding: .8em 0 !important;
 }
 
+.backgroundContainer {
+    background-color: #1e1e2e;
+}
+.backgroundContainer.withBackdrop {
+    background: transparent !important;
+}
 
+.backdropContainer {
+    filter: blur(25px) brightness(75%) saturate(120%) contrast(110%);
+    margin-left: -25px;
+    margin-top: -25px;
+    width: calc(100vw + 50px);
+    height: calc(100vh + 50px);
+}
 
 /* Green watched indicator */
 .playedIndicator {
@@ -313,14 +331,6 @@ progress {
     background: var(--secondary-accent-color) !important;
     color: var(--primary-accent-color) !important;
 }
-
-/* Modified background color */
-html,
-.backgroundContainer:not(.withBackdrop):not(.backgroundContainer-transparent),
-.noBackdropTransparency .detailPageSecondaryContainer {
-    background-color: var(--primary-background-color) !important;
-}
-
 
 /* Transparent header bar */
 .skinHeader {
@@ -388,8 +398,9 @@ html,
     backdrop-filter: blur(var(--blur)) !important;
 }
 .upNextContainer {
+    scale: 50%;
     border-radius: var(--rounded-cards) !important;
-    background-color: rgba(0, 0, 0, 0.6) !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
     margin: 4% !important;
 }
 .toastVisible {
@@ -690,61 +701,269 @@ html,
     color: white !important;
 }
 
-
-
-/* Resize show/movie image on details page */
-.layout-desktop .detailImageContainer .card {
-    top: 9em !important;
-    width: 18.3vw !important;
+/** @format */
+#itemDetailPage {
+    --card-width: 14vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 3.2em !important;
+}
+#itemDetailPage .mediaInfoItem.mediaInfoOfficialRating {
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #000;
+    border: none;
+    font-weight: 600;
+    white-space: nowrap;
+}
+#itemDetailPage .detailRibbon {
+    height: 32vh;
+    margin-top: 0;
+    background: transparent;
+    font-size: 2.2vh;
+    position: static !important;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+#itemDetailPage .detailRibbon .itemMiscInfo {
+    margin-bottom: 0 !important;
+}
+#itemDetailPage .infoWrapper .nameContainer {
+    display:none;
 }
 
-/* Re-position content on details page */
-.layout-desktop .detailSection {
-    margin-right: 0 !important;
-}
-.layout-desktop .detailPageContent {
-    padding-left: 3.3% !important;
+#itemDetailPage .infoWrapper {
+    display: grid;
+    grid-template-areas: "img text" "img info" "img info";
+    grid-template-columns: var(--card-width) 1fr;
+    column-gap: 2em;
+    row-gap: 1em;
+    grid-template-rows: 1fr auto auto;
+    flex: unset !important;
+    align-items: end;
 }
 
+#itemDetailPage .infoWrapper .itemMiscInfo {
+    grid-area: img;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    font-style: italic;
+    font-family: initial;
+    font-size: 4.0vh;
+    font-weight: bolder;
+    width: var(--card-width);
+    justify-content: center;
+    border-radius: 15px;
+}
+#itemDetailPage .infoWrapper .itemMiscInfo .starRatingContainer{
+    display: none;
+}
+
+#itemDetailPage .infoWrapper .itemName {
+    font-size: 3em;
+    color: white;
+    display:none;
+}
+#itemDetailPage .infoWrapper .itemName.subtitle {
+    font-size: 1.4em;
+    margin: 0 !important;
+    padding: 0 !important;
+    display:none;
+}
+
+#itemDetailPage .itemTags {
+    display:none !important;
+}
+
+div .detailPagePrimaryContent {
+    padding-bottom: 24vh !important;
+}
+
+#itemDetailPage .detailImageContainer {
+    grid-area: img;
+    padding: 0 !important;
+    width: var(--card-width);
+}
+#itemDetailPage .detailImageContainer .card {
+    width: 100%;
+    position: static !important;
+    border-radius: 10px;
+}
+#itemDetailPage .detailImageContainer .card .cardBox {
+    margin: 0 !important;
+}
+#itemDetailPage .detailPageWrapperContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4));
+}
+#itemDetailPage .detailPageWrapperContainer > * {
+    padding: 0 !important;
+    background: transparent;
+}
+#itemDetailPage .detailPageContent {
+    padding-left: 0 !important;
+}
+#itemDetailPage .mainDetailButtons .emby-button:not([data-action=resume], [data-action=play]) {
+    background: transparent !important;
+}
 #itemDetailPage .detailLogo {
-    position: static;
-    margin-left: 32.5%;
-    display: block;
-    -webkit-filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75));
-    /*! filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75)); */
-    flex-shrink: 0;
-    background-position: 0 50%;
-    margin-top: -18vh;
-    margin-bottom: 2vh;
+    display: none;
 }
+#itemDetailPage .emby-button {
+    background: transparent !important;
+    border-radius: 10vh;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin-right: 0.5em !important;
+}
+#itemDetailPage .emby-button[is=emby-linkbutton] {
+    color: unset;
+}
+#itemDetailPage .emby-button:not([is=emby-linkbutton]):hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: white;
+}
+#itemDetailPage .emby-button:not([is=emby-linkbutton])::after {
+    display: none;
+}
+#itemDetailPage .emby-button[title=Play], #itemDetailPage .emby-button[title=Resume] {
+    background: white !important;
+    color: black;
+    padding: 0.4em 1em !important;
+    gap: 0.6em;
+    margin-right: 0.5em;
+    width: var(--card-width);
+}
+#itemDetailPage .emby-button[title=Play]::after, #itemDetailPage .emby-button[title=Resume]::after {
+    content: attr(title);
+    display: block;
+    opacity: 1;
+    background: transparent;
+    position: static;
+    font-weight: 500;
+    height: fit-content;
+    font-size: 1.5em;
+    width: fit-content;
+}
+#itemDetailPage .emby-button[title=Play]:hover, #itemDetailPage .emby-button[title=Resume]:hover {
+    background: hsl(0, 0%, 80%) !important;
+    color: black;
+}
+#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list {
+    padding: 0;
+}
+#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem .paper-icon-button-light[data-action=menu]::after {
+    content: "";
+    margin-left: 100%;
+}
+#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem .paper-icon-button-light.listItemImageButton {
+    aspect-ratio: 1;
+    border-radius: 100%;
+    background: linear-gradient(130deg, var(--accent1-light), var(--accent2-light));
+    color: white;
+    opacity: 0;
+    box-shadow: 0 0 0 10em rgba(255, 255, 255, 0.1);
+    transition: opacity 250ms;
+}
+#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem[data-type=Episode] {
+    padding: 0;
+    margin: 0 !important;
+    background: transparent !important;
+}
+#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem[data-type=Episode] .listItem-content {
+    display: grid;
+    grid-template-columns: 25% 1fr 15%;
+    align-content: center;
+    align-items: center;
+}
+#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItem[data-type=Episode] .listItem-content:hover .listItemImageButton {
+    opacity: 1;
+}
+#itemDetailPage .childrenItemsContainer.itemsContainer.vertical-list .listItemImage-large {
+    justify-self: center;
+    margin: 2em !important;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 12em;
+}
+#itemDetailPage .listItem {
+    flex-flow: column !important;
+}
+#itemDetailPage .listItem[data-mediatype=Audio] {
+    flex-flow: row !important;
+    grid-column: auto/span 3;
+}
+#itemDetailPage .detailsGroupItem {
+    max-width: 100% !important;
+}
+#itemDetailPage .detailSection {
+    display: grid;
+    grid-template-areas: "content selector" "detailGroup detailGroup" "recording recording";
+    grid-template-columns: 1fr 40%;
+    gap: 2em;
+    padding-left: 18vw !important;
+}
+#itemDetailPage .detailSection .itemDetailsGroup {
+    grid-area: detailGroup;
+}
+
+#itemDetailPage .detailSection .itemDetailsGroup .genresGroup {
+    display: none;
+}
+
+#itemDetailPage .detailSection .detailSectionContent .seriesAirTime {
+    display: none;
+}
+
+#itemDetailPage .detailSection .detailSectionContent .itemTags {
+    display: none;
+}
+
+#itemDetailPage .detailSection .recordingFields {
+    grid-area: recording;
+}
+#itemDetailPage .detailSection .detailSectionContent {
+    grid-area: content;
+}
+#itemDetailPage .detailSection .trackSelections {
+    grid-area: selector;
+}
+#itemDetailPage .tagline {
+    border-left: 0.25em solid rgb(255, 255, 255);
+    padding: 0 0.5em;
+    color: white;
+}
+#itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) {
+    --card-width: 24vw;
+}
+#itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) .detailPagePrimaryContainer {
+    margin-top: 8.5vh;
+}
+#itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) .detailRibbon {
+    height: 43vh;
+}
+
+.layout-mobile #itemDetailPage .detailSection {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    font-size: 1.3em;
+}
+
+
+
 /* Transparent ribbon bar */
 .detailRibbon {
     background: transparent !important;
-}
-
-/* Add card around top-right buttons */
-.mainDetailButtons {
-    background: var(--primary-background-transparent) !important;
-    border-radius: 100px !important;
-    backdrop-filter: blur(var(--blur)) !important;
-}
-
-/* Add card around groups section */
-.layout-desktop .detailsGroupItem {
-    background: var(--secondary-background-color) !important;
-    padding: 10px 20px !important;
-    border-radius: 100px !important;
-    width: fit-content !important;
-    max-width: max-content !important;
-    display: flex;
-    gap: 1em;
-}
-
-/* Fix for group section labels */
-.detailsGroupItem .label, .trackSelections .selectContainer .selectLabel {
-    min-width: 75px;
-    flex-basis: unset;
-    margin: unset;
 }
 
 /* Alternative mobile group section card */
@@ -753,84 +972,6 @@ html,
     padding: 15px 20px 5px 20px !important;
     border-radius: var(--rounded-cards) !important;
 }
-
-
-/* Add card around track selection */
-.trackSelections {
-    background: var(--secondary-background-color) !important;
-    border-radius: var(--rounded-cards) !important;
-    padding: 10px 20px !important;
-    margin-top: 20px !important;
-}
-
-/* Fix for track select dropdowns */
-.trackSelections .selectContainer .detailTrackSelect {
-    padding: 0 10px;
-}
-
-/* Re-position title */
-.layout-desktop .infoWrapper {
-    margin-top: 245px !important;
-    margin-left: 20.4vw !important;
-}
-.layout-desktop .detailPagePrimaryContainer {
-    padding-left: 3.3% !important;
-}
-.layout-desktop .nameContainer {
-    position: absolute !important;
-    margin-top: -55px !important;
-}
-.layout-desktop .itemMiscInfo {
-    position: absolute !important;
-    margin-left: 21px !important;
-    margin-top: 16px !important;
-}
-
-/* Move description box */
-.layout-desktop .detailPagePrimaryContent {
-    padding-left: 20.4vw !important;
-}
-/* Padding for 2:3 posters */
-.layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .portraitCard) .detailPagePrimaryContent {
-    min-height: 29vw !important;
-}
-/* Padding for 1:1 posters */
-.layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .squareCard) .detailPagePrimaryContent {
-    min-height: 20vw !important;
-}
-/* Padding for 16:9 posters */
-.layout-desktop .detailPageWrapperContainer:has(.detailImageContainer .backdropCard) .detailPagePrimaryContent {
-    min-height: 12vw !important;
-}
-/* Fix for JMP */
-@supports not selector(:has(*)) {
-    .layout-desktop .detailPageWrapperContainer .detailPagePrimaryContent {
-        min-height: 29vw !important;
-    }
-}
-
-/* Move track selection box */
-
-/*}*/
-/* Modify play button */
-.layout-desktop .mainDetailButtons .btnPlay::after {
-    content: "Play" !important;
-}
-.layout-desktop .mainDetailButtons .btnPlay {
-    position: relative !important;
-    margin-right: -85px !important;
-    padding-right: 20px !important;
-    right: 110px !important;
-    background: var(--primary-accent-color) !important;
-    border-radius: 100px !important;
-    color: var(--secondary-background-color) !important;
-}
-.layout-desktop .mainDetailButtons .detailButton {
-    -webkit-flex-direction: row !important;
-    flex-direction: row !important;
-}
-
-
 
 /* Live TV */
 /* Modified background color of active guide cells */
@@ -847,11 +988,6 @@ html,
 .recordingIcon {
     color: red !important;
 }
-/* Remove overlapping text */
-.itemMiscInfo.itemMiscInfo-secondary {
-    margin-left: 65px !important;
-}
-
 
 
 /* Music Player */
@@ -1014,8 +1150,7 @@ html,
 .layout-desktop #itemDetailPage:not(.noBackdropTransparency) .detailsGroupItem,
 .layout-desktop #itemDetailPage:not(.noBackdropTransparency) .detailSectionContent,
 .layout-desktop #itemDetailPage:not(.noBackdropTransparency) .trackSelections {
-    background: var(--primary-background-transparent) !important;
-    backdrop-filter: blur(var(--blur)) !important;
+    background: rgba(0,0,0,0) !important;
 }
 
 /* Transparent drawer */
@@ -1040,17 +1175,7 @@ html,
         background: var(--secondary-background-color);
     }
 }
-#itemDetailPage .detailLogo {
-    position: static;
-    margin-left: 32.5%;
-    display: block;
-    -webkit-filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75));
-    /*! filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75)); */
-    flex-shrink: 0;
-    background-position: 0 50%;
-    margin-top: -18vh;
-    margin-bottom: 2vh;
-}
+
 .itemBackdrop {
     height: 31vh !important;
     display: inherit;
@@ -1083,14 +1208,63 @@ html,
 .layout-mobile #itemDetailPage .itemName.infoText.parentNameLast {
     display: block;
 }
-/* Blur buttons */
-.layout-desktop:has(.backgroundContainer.withBackdrop) .navMenuOption-selected {
-    backdrop-filter: blur(var(--blur)) !important;
+
+/** @format */
+.layout-mobile #itemDetailPage .itemBackdrop {
+    display: block !important;
 }
-.layout-desktop:has(.backgroundContainer.withBackdrop) .navMenuOption:hover:not(.navMenuOption-selected) {
-    background: var(--primary-background-transparent) !important;
-    backdrop-filter: blur(var(--blur)) !important;
+.layout-mobile #itemDetailPage .parentName,
+.layout-mobile #itemDetailPage .parentNameLast {
+    display: block !important;
+    font-size: 1.6em !important;
 }
+.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
+    display: none !important;
+}
+
+body #itemDetailPage .parentName,
+body #itemDetailPage .parentNameLast {
+    font-size: 0 !important;
+}
+body #itemDetailPage .detailLogo {
+    left: 18.8vw;
+    height: 30vh;
+    background-position: left bottom !important;
+    -webkit-filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75));
+
+}
+body #itemDetailPage:has(.itemName.subtitle) .detailLogo {
+    top: 9.5vh;
+}
+body #itemDetailPage .nameContainer .parentName a {
+    position: absolute;
+    top: 9.5vh;
+    left: 18.8vw;
+    border-radius: 0 !important;
+    width: 25vw;
+    height: 30vh;
+    font-size: 0;
+}
+body #itemDetailPage .detailLogo:not(.hide) {
+    display: block !important;
+    position: absolute;
+    flex-shrink: 0;
+    flex-grow: 0;
+    background-position: left;
+}
+body #itemDetailPage .detailLogo.hide + .detailPageWrapperContainer > .detailPagePrimaryContainer {
+    margin-top: 10vh;
+}
+body #itemDetailPage .detailLogo.hide + .detailPageWrapperContainer > .detailPagePrimaryContainer > .infoWrapper > .nameContainer > .itemName {
+    font-size: 2.5em !important;
+    display: block !important;
+}
+body #itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) .nameContainer .parentName a,
+body #itemDetailPage:has(.parentName a[data-type=Series]):not(:has(.listItem)) .detailLogo {
+    top: 2vh;
+    left: 28.8vw;
+}
+
 
 html,
 body,
